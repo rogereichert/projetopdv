@@ -4,7 +4,7 @@ package br.com.projetopdv.model;
  * @author Roger Reichert
  * @version 1.0.0
  */
-public class Cliente {
+public class Clientes {
     
     private int idCliente;
     private String nome;
@@ -15,6 +15,7 @@ public class Cliente {
     private String cidade;
     private String estado;
     private String telefone;
+    private String email;
 
     public int getIdCliente() {
         return idCliente;
@@ -88,4 +89,11 @@ public class Cliente {
         this.telefone = telefone;
     }
    
+     public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

@@ -1,6 +1,7 @@
 package br.com.projetopdv.jdbc;
 
 import java.sql.Connection;
+import javafx.scene.control.ButtonBar;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,7 +17,7 @@ public class TestaConexao {
         try {
             
             new ConnectionFactory().getConnection();
-            JOptionPane.showMessageDialog(null, "Conectado!");
+            JOptionPane.showMessageDialog(null, "Conectado", "Confirmação", JOptionPane.INFORMATION_MESSAGE);
             
         } catch (Exception e) {
             
