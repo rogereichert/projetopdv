@@ -2,13 +2,12 @@ package br.com.projetopdv.model;
 
 /**
  * @author Roger Reichert
- * @version 1.0.0
+ * @version 1.0.1
  */
-public class Clientes {
+public class Pessoas {
     
-    private int idCliente;
+    private int idPessoa;
     private String nome;
-    private String cpf;
     private String cep;
     private String endereco;
     private String bairro;
@@ -17,12 +16,12 @@ public class Clientes {
     private String telefone;
     private String email;
 
-    public int getIdCliente() {
-        return idCliente;
+    public int getIdPessoa() {
+        return idPessoa;
     }
 
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
+    public void setIdPessoa(int idPessoa) {
+        this.idPessoa = idPessoa;
     }
 
     public String getNome() {
@@ -31,14 +30,6 @@ public class Clientes {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
     }
 
     public String getCep() {
