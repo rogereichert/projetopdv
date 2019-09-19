@@ -1,7 +1,7 @@
 package br.com.projetopdv.DAO;
 
 import br.com.projetopdv.jdbc.ConnectionFactory;
-import br.com.projetopdv.model.Pessoas;
+import br.com.projetopdv.model.Pessoa;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
@@ -12,18 +12,18 @@ import java.util.List;
  * @author Roger Reichert
  * @version 1.0.1
  */
-public class PessoasDao {
+public class PessoaDao {
    
     // atributo de conexão
     private Connection conn;
 
     // construtor da classe
-    public PessoasDao(){
+    public PessoaDao(){
         this.conn = new ConnectionFactory().getConnection();
     }
     
     // método para cadastrar clientes
-    public void cadastraPessoas(Pessoas pessoa){
+    public void cadastraPessoas(Pessoa pessoa){
         
         try {
             
@@ -56,6 +56,5 @@ public class PessoasDao {
             
             JOptionPane.showMessageDialog(null, "Problema encontrado: " + e, "Erro", JOptionPane.WARNING_MESSAGE);
         } 
-    
     }
 }

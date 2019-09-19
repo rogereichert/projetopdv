@@ -4,7 +4,7 @@ package br.com.projetopdv.model;
  * @author Roger Reichert
  * @version 1.0.1
  */
-public class Pessoas {
+public class Pessoa {
     
     private int idPessoa;
     private String nome;
