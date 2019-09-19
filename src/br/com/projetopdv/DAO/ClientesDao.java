@@ -5,6 +5,8 @@ import br.com.projetopdv.model.Clientes;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Roger Reichert
@@ -57,7 +59,17 @@ public class ClientesDao {
     
     }
     
-    public void consultaCliente(){
+    public List<Clientes> buscaCliente(String pesquisar){
+        
+        try {
+            
+            
+            
+        } catch (Exception e) {
+        
+            JOptionPane.showMessageDialog(null, "Problema encontrado: " + e, "Erro", JOptionPane.WARNING_MESSAGE);
+            
+        }
         
     }
     
