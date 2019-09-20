@@ -34,7 +34,7 @@ public class Produto {
     }
 
     public void setDescricao(String descricao) {
-        this.descricao = descricao;
+        this.descricao = descricao.toUpperCase();
     }
 
     public double getPreco() {
@@ -50,7 +50,18 @@ public class Produto {
     }
 
     public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
+        
+        if (quantidade < 0){
+            
+            quantidade = 0;
+            this.quantidade = quantidade;
+            
+        }else{
+            
+            this.quantidade = quantidade;
+            
+        }
+        
     }
     
     

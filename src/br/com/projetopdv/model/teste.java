@@ -16,11 +16,12 @@ public class teste {
     public static void main(String[] args) {
         
         String nome = "Roger";
+        int quantidade = -11;
         
         Produto p = new Produto();
         p.setDescricao(nome);
-        
-        JOptionPane.showMessageDialog(null, p.getDescricao());
+        p.setQuantidade(quantidade);
+        JOptionPane.showMessageDialog(null, p.getQuantidade());
     }
     
 }
