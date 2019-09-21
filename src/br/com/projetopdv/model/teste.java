@@ -14,14 +14,19 @@ import javax.swing.JOptionPane;
 public class teste {
 
     public static void main(String[] args) {
+       
+       categoriaProduto c = new categoriaProduto();
+       c.setId(100000);
+       Produto p = new Produto();
+       p.setDescricao("Arroz");
+       p.setId_categoria(c.getId());
+       
+       p.setId_categoria(c.getId());
+       
+       
+       JOptionPane.showMessageDialog(null, p.getId_categoria());
         
-        String nome = "Roger";
-        int quantidade = -11;
         
-        Produto p = new Produto();
-        p.setDescricao(nome);
-        p.setQuantidade(quantidade);
-        JOptionPane.showMessageDialog(null, p.getQuantidade());
     }
     
 }

@@ -12,6 +12,7 @@ public class Produto {
     private String descricao;
     private double preco;
     private int quantidade;
+    private int id_categoria;
 
     public int getId() {
         return id;
@@ -63,6 +64,15 @@ public class Produto {
         }
         
     }
+
+    public int getId_categoria() {
+        return id_categoria;
+    }
+
+    public void setId_categoria(int id_categoria) {
+        this.id_categoria = id_categoria;
+    }
+    
     
     
     
