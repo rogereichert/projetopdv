@@ -25,14 +25,15 @@ public class CategoriaDao {
         
         try {
             
-            String sql = "INSERT INTO tbl_categoria_produto (descricao) VALUES (?)";
+            String sql = "INSERT INTO tbl_categoria_produtos(descricao) "
+                    + "VALUES (?)";
         
-            PreparedStatement stmt = conn.prepareCall(sql);
+            PreparedStatement stmt = conn.prepareStatement(sql);
             
             stmt.setString(1, categoria.getCategoria());
             
             // executo o comando sqql
-            stmt.execute(sql);
+            stmt.execute();
             
             // fecho a conexão
             stmt.close();

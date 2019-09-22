@@ -32,7 +32,7 @@ public class PessoaDao {
                     + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             
             // Conecta ao banco de dados para fazer a inserção dos dados
-            PreparedStatement stmt = conn.prepareCall(sql);
+            PreparedStatement stmt = conn.prepareStatement(sql);
             
             // adiciona os valores no objeto criado no parâmetro do método
             stmt.setString(1, pessoa.getNome());
@@ -45,7 +45,7 @@ public class PessoaDao {
             stmt.setString(8, pessoa.getEmail());
             
             // executo o comando sqql
-            stmt.execute(sql);
+            stmt.execute();
             
             // fecho a conexão
             stmt.close();

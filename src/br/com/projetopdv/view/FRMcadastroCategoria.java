@@ -5,6 +5,11 @@
  */
 package br.com.projetopdv.view;
 
+import br.com.projetopdv.DAO.CategoriaDao;
+import br.com.projetopdv.model.categoriaProduto;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author roger
@@ -27,16 +32,23 @@ public class FRMcadastroCategoria extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        txtCategoria = new javax.swing.JTextField();
+        btnAdicionaCategoria = new javax.swing.JButton();
+        lblCategoria = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cadastro de Categoria de Produtos");
+        setName("categoria"); // NOI18N
 
-        jButton1.setText("Adicionar");
+        btnAdicionaCategoria.setText("Adicionar");
+        btnAdicionaCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdicionaCategoriaActionPerformed(evt);
+            }
+        });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("Categoria:");
+        lblCategoria.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblCategoria.setText("Categoria:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -44,30 +56,66 @@ public class FRMcadastroCategoria extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(lblCategoria)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(141, 141, 141))
+                .addComponent(btnAdicionaCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(131, 131, 131))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(71, 71, 71)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCategoria))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addComponent(btnAdicionaCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void cadastrarCategoria(){
+        
+        // método responsável que cadstra a categoria quando o botão salvar for clicado
+        try {
+            
+            if(txtCategoria.getText().isEmpty()){
+                
+                JOptionPane.showMessageDialog(null, "O Campo não pode ser estar vazio!");
+                
+            }else{
+                
+                // crio o objeto da classe categoriaProduto
+                categoriaProduto categoria = new categoriaProduto();
+                categoria.setCategoria(txtCategoria.getText());
+                
+                // crio o objeto da classe CategoriaDao
+                CategoriaDao dao = new CategoriaDao();
+                dao.cadastrarCategoria(categoria);
+                
+               //JOptionPane.showMessageDialog(null, categoria.getCategoria());
+            }
+            
+        } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+            
+        }
+        
+    }
+    
+    private void btnAdicionaCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionaCategoriaActionPerformed
+        
+        // Chama o método cadastrarCategoria()
+        cadastrarCategoria();
+    }//GEN-LAST:event_btnAdicionaCategoriaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -80,7 +128,7 @@ public class FRMcadastroCategoria extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -106,8 +154,8 @@ public class FRMcadastroCategoria extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton btnAdicionaCategoria;
+    private javax.swing.JLabel lblCategoria;
+    private javax.swing.JTextField txtCategoria;
     // End of variables declaration//GEN-END:variables
 }
