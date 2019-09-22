@@ -4,6 +4,8 @@ import br.com.projetopdv.jdbc.ConnectionFactory;
 import br.com.projetopdv.model.Pessoa;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,16 +25,18 @@ public class PessoaDao {
     }
     
     // método para cadastrar clientes
-    public void cadastraPessoas(Pessoa pessoa){
+    public int cadastraPessoas(Pessoa pessoa){
+        
+        int retorno = 0;
         
         try {
             
             // string do comando sql
-            String sql = "INSERT INTO tb_clientes(nome, cep, endereco, bairro, cidade, estado, telefone, email) "
-                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO tbl_pessoas(nome, cep, endereco, bairro, cidade, estado, telefone, email) "
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             
             // Conecta ao banco de dados para fazer a inserção dos dados
-            PreparedStatement stmt = conn.prepareStatement(sql);
+            PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             
             // adiciona os valores no objeto criado no parâmetro do método
             stmt.setString(1, pessoa.getNome());
@@ -45,16 +49,25 @@ public class PessoaDao {
             stmt.setString(8, pessoa.getEmail());
             
             // executo o comando sqql
-            stmt.execute();
+            retorno  = stmt.executeUpdate();
+            ResultSet rs = stmt.getGeneratedKeys();
+            
+            if(rs.next()){
+                retorno = rs.getInt(1);
+            }
             
             // fecho a conexão
             stmt.close();
             
+            
             //JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!", "Confirmação", JOptionPane.INFORMATION_MESSAGE);
+            
+            return retorno;
             
         } catch (Exception e) {
             
             JOptionPane.showMessageDialog(null, "Problema encontrado: " + e, "Erro", JOptionPane.WARNING_MESSAGE);
+            return 0;
         } 
     }
 }

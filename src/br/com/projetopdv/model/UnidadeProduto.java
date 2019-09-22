@@ -1,6 +1,6 @@
 package br.com.projetopdv.model;
 
-public class Unidade {
+public class UnidadeProduto {
     
     private int id;
     private String unidade;
@@ -20,7 +20,4 @@ public class Unidade {
     public void setUnidade(String unidade) {
         this.unidade = unidade;
     }
-    
-   
-    
 }

@@ -5,21 +5,20 @@
  */
 package br.com.projetopdv.view;
 
-import br.com.projetopdv.DAO.CategoriaDao;
-import br.com.projetopdv.model.CategoriaProduto;
-import java.sql.SQLException;
+import br.com.projetopdv.DAO.UnidadeDao;
+import br.com.projetopdv.model.UnidadeProduto;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author roger
  */
-public class FRMcadastroCategoria extends javax.swing.JFrame {
+public class FRMcadastroUnidade extends javax.swing.JFrame {
 
     /**
-     * Creates new form produtoteste
+     * Creates new form FRMcadastroUnidade
      */
-    public FRMcadastroCategoria() {
+    public FRMcadastroUnidade() {
         initComponents();
     }
 
@@ -32,73 +31,71 @@ public class FRMcadastroCategoria extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtCategoria = new javax.swing.JTextField();
-        btnAdicionaCategoria = new javax.swing.JButton();
-        lblCategoria = new javax.swing.JLabel();
+        lblUnidade = new javax.swing.JLabel();
+        txtUnidade = new javax.swing.JTextField();
+        btnAdicionarUnidade = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Cadastro de Categoria de Produtos");
-        setName("categoria"); // NOI18N
 
-        btnAdicionaCategoria.setText("Adicionar");
-        btnAdicionaCategoria.addActionListener(new java.awt.event.ActionListener() {
+        lblUnidade.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblUnidade.setText("Unidade:");
+
+        btnAdicionarUnidade.setText("Adicionar");
+        btnAdicionarUnidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdicionaCategoriaActionPerformed(evt);
+                btnAdicionarUnidadeActionPerformed(evt);
             }
         });
-
-        lblCategoria.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblCategoria.setText("Categoria:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblCategoria)
+                .addGap(21, 21, 21)
+                .addComponent(lblUnidade)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtUnidade, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(28, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAdicionaCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(134, 134, 134))
+                .addComponent(btnAdicionarUnidade, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(139, 139, 139))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(71, 71, 71)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(lblCategoria)
-                    .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(70, 70, 70)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtUnidade, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblUnidade))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnAdicionaCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addComponent(btnAdicionarUnidade, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    
-    private void cadastrarCategoria(){
+
+    private void adicionarUnidade(){
         
-        // método responsável que cadstra a categoria quando o botão salvar for clicado
+         // método responsável que cadstra a categoria quando o botão salvar for clicado
         try {
             
-            if(txtCategoria.getText().isEmpty()){
+            if(txtUnidade.getText().isEmpty()){
                 
                 JOptionPane.showMessageDialog(null, "O Campo não pode ser estar vazio!");
                 
             }else{
                 
-                // crio o objeto da classe CategoriaProduto
-                CategoriaProduto categoria = new CategoriaProduto();
-                categoria.setCategoria(txtCategoria.getText());
+                // crio o objeto da classe categoriaProduto
+                UnidadeProduto unidade = new UnidadeProduto();
+                unidade.setUnidade(txtUnidade.getText());
                 
                 // crio o objeto da classe CategoriaDao
-                CategoriaDao dao = new CategoriaDao();
-                dao.cadastrarCategoria(categoria);
+                UnidadeDao dao = new UnidadeDao();
+                dao.cadastrarUnidade(unidade);
                 
                //JOptionPane.showMessageDialog(null, categoria.getCategoria());
             }
@@ -111,11 +108,9 @@ public class FRMcadastroCategoria extends javax.swing.JFrame {
         
     }
     
-    private void btnAdicionaCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionaCategoriaActionPerformed
-        
-        // Chama o método cadastrarCategoria()
-        cadastrarCategoria();
-    }//GEN-LAST:event_btnAdicionaCategoriaActionPerformed
+    private void btnAdicionarUnidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarUnidadeActionPerformed
+        adicionarUnidade();
+    }//GEN-LAST:event_btnAdicionarUnidadeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -134,28 +129,27 @@ public class FRMcadastroCategoria extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FRMcadastroCategoria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FRMcadastroUnidade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FRMcadastroCategoria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FRMcadastroUnidade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FRMcadastroCategoria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FRMcadastroUnidade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FRMcadastroCategoria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FRMcadastroUnidade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FRMcadastroCategoria().setVisible(true);
+                new FRMcadastroUnidade().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdicionaCategoria;
-    private javax.swing.JLabel lblCategoria;
-    private javax.swing.JTextField txtCategoria;
+    private javax.swing.JButton btnAdicionarUnidade;
+    private javax.swing.JLabel lblUnidade;
+    private javax.swing.JTextField txtUnidade;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,7 +5,7 @@ package br.com.projetopdv.model;
  * @author Roger Reichert
  * @version 1.0.0
  */
-public class categoriaProduto {
+public class CategoriaProduto {
 
     private int id;
     private String categoria;

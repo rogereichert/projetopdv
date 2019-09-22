@@ -15,7 +15,7 @@ public class teste {
 
     public static void main(String[] args) {
        
-       categoriaProduto c = new categoriaProduto();
+       CategoriaProduto c = new CategoriaProduto();
        c.setId(100000);
        Produto p = new Produto();
        p.setDescricao("Arroz");

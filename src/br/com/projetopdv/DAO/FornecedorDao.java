@@ -1,8 +1,9 @@
 package br.com.projetopdv.DAO;
 
 import br.com.projetopdv.jdbc.ConnectionFactory;
-import br.com.projetopdv.model.CategoriaProduto;
 import java.sql.Connection;
+import br.com.projetopdv.model.Fornecedor;
+import br.com.projetopdv.model.Pessoa;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 
@@ -11,28 +12,28 @@ import javax.swing.JOptionPane;
  * @author Roger Reichert
  * @version 1.0.0
  */
-public class CategoriaDao {
-     
+public class FornecedorDao {
+    
     private Connection conn;
     
-    // construtor que conecta no banco
-    public CategoriaDao(){
+    public FornecedorDao(){
         
         this.conn = new ConnectionFactory().getConnection();
         
     }
     
-    // Método responsável por cadastrar uma categoria no banco de dados
-    public void cadastrarCategoria(CategoriaProduto categoria){
+    public void cadastrarFornecedor(Fornecedor fornecedor){
         
         try {
             
-            String sql = "INSERT INTO tbl_categoria_produtos(descricao) "
-                    + "VALUES (?)";
-        
+            String sql = "INSERT INTO tbl_fornecedores(id_pessoa, cnpj) VALUES (?, ?)";
+            
             PreparedStatement stmt = conn.prepareStatement(sql);
             
-            stmt.setString(1, categoria.getCategoria());
+            //fornecedor.setId_pessoa(dao.cadastraPessoas(p));
+            
+            stmt.setInt(1, fornecedor.getId_pessoa());
+            stmt.setString(2, fornecedor.getCnpj());
             
             // executo o comando sqql
             stmt.execute();
@@ -43,21 +44,8 @@ public class CategoriaDao {
             JOptionPane.showMessageDialog(null, "Categoria cadastrada com sucesso!", "Confirmação", JOptionPane.INFORMATION_MESSAGE);
             
         } catch (Exception e) {
-        
-            JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
-            
         }
-    }
-    
-    public void editarCategoria(){
         
     }
     
-    public void excluirCategoria(){
-        
-    }
-    
-    public void listarCategoria(){
-        
-    }
 }
