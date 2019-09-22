@@ -1,0 +1,4 @@
+Entidade Categoria: 
+1 - classe CategoriaDao -> cadastrarCategoria()
+2 - classe categoriaProduto -> get e set dos atributos
+3 - formulário FRMcadastroCateoria -> inclusão de categorias = Ok

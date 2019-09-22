@@ -15,12 +15,14 @@ public class CategoriaDao {
      
     private Connection conn;
     
+    // construtor que conecta no banco
     public CategoriaDao(){
         
         this.conn = new ConnectionFactory().getConnection();
         
     }
     
+    // Método responsável por cadastrar uma categoria no banco de dados
     public void cadastrarCategoria(categoriaProduto categoria){
         
         try {
@@ -45,7 +47,17 @@ public class CategoriaDao {
             JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
             
         }
+    }
+    
+    public void editarCategoria(){
         
     }
     
+    public void excluirCategoria(){
+        
+    }
+    
+    public void listarCategoria(){
+        
+    }
 }
