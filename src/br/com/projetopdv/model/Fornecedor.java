@@ -5,7 +5,7 @@ package br.com.projetopdv.model;
  * @author Roger Reichert
  * @version 1.0.0
  */
-public class Fornecedor {
+public class Fornecedor{
     
     private int id;
     private int id_pessoa;
@@ -22,7 +22,7 @@ public class Fornecedor {
     public int getId_pessoa() {
         return id_pessoa;
     }
-
+   
     public void setId_pessoa(int id_pessoa) {
         this.id_pessoa = id_pessoa;
     }
