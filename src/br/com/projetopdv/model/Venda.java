@@ -52,8 +52,4 @@ public class Venda {
         this.observacoes = observacoes;
     }
     
-    public void teste(){
-        
-    }
-    
 }
