@@ -48,7 +48,11 @@ public class ItemVenda {
     }
 
     public void setSubtotal(double subtotal) {
-        this.subtotal = subtotal;
+        if (subtotal <= 0.00){
+            this.subtotal = 0.00;
+        }else{
+            this.subtotal = subtotal;
+        }
     }
     
 }
