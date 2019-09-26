@@ -18,6 +18,6 @@ public class UnidadeProduto {
     }
 
     public void setUnidade(String unidade) {
-        this.unidade = unidade;
+        this.unidade = unidade.toUpperCase();
     }
 }
