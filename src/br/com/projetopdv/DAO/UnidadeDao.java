@@ -4,7 +4,11 @@ import br.com.projetopdv.jdbc.ConnectionFactory;
 import java.sql.Connection;
 import br.com.projetopdv.model.UnidadeProduto;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -44,6 +48,39 @@ public class UnidadeDao {
             JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
         
         }
+        
+    }
+    
+    public UnidadeProduto buscaUnidade(String busca){
+        
+        try {
+            
+            String sql = "SELECT * FROM tbl_unidades_produto where descricao = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, busca);
+            
+            ResultSet rs = stmt.executeQuery();
+            UnidadeProduto obj = new UnidadeProduto();
+            
+            if(rs.next()){
+                
+                obj.setId(rs.getInt("id"));
+                obj.setUnidade(rs.getString("descricao"));
+                
+            }
+            
+            return obj;
+            
+        } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, "Unidade não cadastrada");
+            return null;
+            
+        }
+        
+        
+        
+        
         
     }
     
