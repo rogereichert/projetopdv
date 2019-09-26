@@ -23,7 +23,7 @@ public class CategoriaProduto {
     }
 
     public void setCategoria(String categoria) {
-        this.categoria = categoria;
+        this.categoria = categoria.toUpperCase();
     }
     
 }
