@@ -41,9 +41,11 @@ public class FornecedorDao {
             // fecho a conexão
             stmt.close();
             
-            JOptionPane.showMessageDialog(null, "Categoria cadastrada com sucesso!", "Confirmação", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Fornecedor cadastrado com sucesso!", "Confirmação", JOptionPane.INFORMATION_MESSAGE);
             
         } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, "Erro: " + e, "Erro", JOptionPane.WARNING_MESSAGE);
         }
         
     }
