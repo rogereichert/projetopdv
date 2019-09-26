@@ -47,4 +47,26 @@ public class UnidadeDao {
         
     }
     
+    public void alterarUnidade(UnidadeProduto unidade){
+        
+        try {
+            
+            String sql = "UPDATE tb_unidades_produto  SET descricao=? WHERE id = ?";
+            
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            
+            stmt.setString(1, unidade.getUnidade());
+            
+            stmt.executeQuery();
+            
+            stmt.close();
+            
+        } catch (Exception e) {
+        
+            JOptionPane.showMessageDialog(null, "Erro: " + e);
+        
+        }
+        
+    }
+    
 }
