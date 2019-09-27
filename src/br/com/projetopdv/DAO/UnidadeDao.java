@@ -4,11 +4,7 @@ import br.com.projetopdv.jdbc.ConnectionFactory;
 import java.sql.Connection;
 import br.com.projetopdv.model.UnidadeProduto;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -45,9 +41,33 @@ public class UnidadeDao {
         }
     }
     
-    public void alterarUnidade(UnidadeProduto unidade){
+    /*
+        updateProduto() = MÉTODO RESPONSÁVEL POR ATUALIZAR UMA UNIDADE DE PRODUTO
+    */
+    public void updateUnidadeProduto(UnidadeProduto obj){
         
-      
+        try {
+            
+            // COMANDO UPDATE
+            String sql = "UPDATE tbl_udades_produto SET descricao = ? WHERE id = ?";
+            
+            // CONECTAR AO BANCO E ORGANIZAR O COMANDO SQL
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            
+            // ATRIBUIO OS VALORES QUE SERÃO PASSADOS NO OBJETO
+            stmt.setString(1, obj.getUnidade());
+            stmt.setInt(2, obj.getId());
+            
+            // EXECUTA A SQL
+            stmt.execute();
+            
+            // MOSTRO AO USUÁRIO QUE A ALTERAÇÃO FOI REALIZADA COM SUCESSO
+            JOptionPane.showMessageDialog(null, "Alteração realizada com sucesso");
+            
+        } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, "Erro em atualizar unidade: " + e);
+        }
     }
     
 }
