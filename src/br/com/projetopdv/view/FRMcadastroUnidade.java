@@ -7,20 +7,47 @@ package br.com.projetopdv.view;
 
 import br.com.projetopdv.DAO.UnidadeDao;
 import br.com.projetopdv.model.UnidadeProduto;
+import java.awt.Color;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author roger
  */
 public class FRMcadastroUnidade extends javax.swing.JFrame {
-
+    
+    public void listarUnidades(){
+        
+        UnidadeDao dao = new UnidadeDao();
+        List<UnidadeProduto> lista = dao.listaUnidadeProduto();
+        DefaultTableModel dados = (DefaultTableModel) tableUnidade.getModel();
+        dados.setNumRows(0);
+        
+        for (UnidadeProduto u : lista){
+            
+            dados.addRow(new Object[]{
+               
+                u.getId(),
+                u.getUnidade()
+            });
+            
+        }
+        
+        
+        
+    }
+    
     /**
      * Creates new form FRMcadastroUnidade
      */
+    
+    UnidadeProduto unidade = new UnidadeProduto();
     public FRMcadastroUnidade() {
         initComponents();
+        this.getContentPane().setBackground(Color.WHITE);
     }
 
     /**
@@ -37,8 +64,15 @@ public class FRMcadastroUnidade extends javax.swing.JFrame {
         btnAdicionarUnidade = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableUnidade = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         lblUnidade.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblUnidade.setText("Unidade:");
@@ -64,6 +98,31 @@ public class FRMcadastroUnidade extends javax.swing.JFrame {
             }
         });
 
+        tableUnidade.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Código ", "Unidade"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tableUnidade);
+        if (tableUnidade.getColumnModel().getColumnCount() > 0) {
+            tableUnidade.getColumnModel().getColumn(0).setResizable(false);
+            tableUnidade.getColumnModel().getColumn(1).setResizable(false);
+        }
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -73,15 +132,17 @@ public class FRMcadastroUnidade extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnAdicionarUnidade, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnAlterar))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblUnidade)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtUnidade, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnBuscar)
-                .addContainerGap())
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(txtUnidade, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAdicionarUnidade, btnAlterar});
@@ -94,11 +155,13 @@ public class FRMcadastroUnidade extends javax.swing.JFrame {
                     .addComponent(txtUnidade, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblUnidade)
                     .addComponent(btnBuscar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdicionarUnidade, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAlterar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnBuscar, txtUnidade});
@@ -127,7 +190,7 @@ public class FRMcadastroUnidade extends javax.swing.JFrame {
             }else{
                 
                 // crio o objeto da classe categoriaProduto
-                UnidadeProduto unidade = new UnidadeProduto();
+              
                 unidade.setUnidade(txtUnidade.getText());
                 
                 // crio o objeto da classe CategoriaDao
@@ -153,12 +216,32 @@ public class FRMcadastroUnidade extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdicionarUnidadeActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        limparCampo();
+        String buscar = txtUnidade.getText();
+        UnidadeProduto obj = new UnidadeProduto();
+        UnidadeDao dao = new UnidadeDao();
+        
+        obj = dao.searchUnidade(buscar);
+        
+        if (obj.getUnidade() != null){
+            
+            txtUnidade.setText(obj.getUnidade());
+            
+        }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         
+        UnidadeProduto obj = new UnidadeProduto();
+        obj.setUnidade(txtUnidade.getText());
+        
+        UnidadeDao dao = new UnidadeDao();
+        dao.updateUnidadeProduto(obj);
+        
     }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        listarUnidades();
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
@@ -199,7 +282,9 @@ public class FRMcadastroUnidade extends javax.swing.JFrame {
     private javax.swing.JButton btnAdicionarUnidade;
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblUnidade;
+    private javax.swing.JTable tableUnidade;
     private javax.swing.JTextField txtUnidade;
     // End of variables declaration//GEN-END:variables
 }

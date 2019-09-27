@@ -5,6 +5,8 @@ import java.sql.Connection;
 import br.com.projetopdv.model.UnidadeProduto;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,6 +20,7 @@ public class UnidadeDao {
     
     public UnidadeDao(){
         this.conn = new ConnectionFactory().getConnection();
+        UnidadeProduto obj = new UnidadeProduto();
     }
     
     public void cadastrarUnidade(UnidadeProduto unidade){
@@ -50,7 +53,7 @@ public class UnidadeDao {
         try {
             
             // COMANDO UPDATE
-            String sql = "UPDATE tbl_udades_produto SET descricao = ? WHERE id = ?";
+            String sql = "UPDATE tbl_unidades_produto SET descricao = ? WHERE id = ?";
             
             // CONECTAR AO BANCO E ORGANIZAR O COMANDO SQL
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -75,7 +78,7 @@ public class UnidadeDao {
         
         try {
             
-            String sql = "SELECT descricao FROM tbl_unidades_produtos WHERE descricao = ?";
+            String sql = "SELECT * FROM tbl_unidades_produto WHERE descricao = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, search);
             
@@ -87,6 +90,7 @@ public class UnidadeDao {
                 
                 unidade.setId(rs.getInt("id"));
                 unidade.setUnidade(rs.getString("descricao"));
+                JOptionPane.showMessageDialog(null, "Unidade Encontrada");
                 
             }else{
                 
@@ -100,6 +104,38 @@ public class UnidadeDao {
             JOptionPane.showMessageDialog(null, "Não foi possível fazer a busca, erro: " + e.getMessage());
             return null;
         }
+    }
+    
+    public List<UnidadeProduto> listaUnidadeProduto(){
+        
+        try {
+            
+            List<UnidadeProduto> lista = new ArrayList<>();
+            
+            String sql = "SELECT * FROM tbl_unidades_produto";
+            
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                
+                UnidadeProduto obj = new UnidadeProduto();
+                
+                obj.setId(rs.getInt("id"));
+                obj.setUnidade(rs.getString("descricao"));
+                
+                lista.add(obj);
+            }
+            
+            return lista;
+            
+        } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, "Erro :" + e);
+            return null;
+            
+        }
+        
     }
     
 }
