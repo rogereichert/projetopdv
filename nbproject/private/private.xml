@@ -2,13 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/roger/Documents/NetBeansProjects/projetopdv/src/br/com/projetopdv/view/FRMcadastroFornecedor.java</file>
-            <file>file:/C:/Users/roger/Documents/NetBeansProjects/projetopdv/src/br/com/projetopdv/DAO/FornecedorDao.java</file>
-            <file>file:/C:/Users/roger/Documents/NetBeansProjects/projetopdv/src/br/com/projetopdv/DAO/UnidadeDao.java</file>
-            <file>file:/C:/Users/roger/Documents/NetBeansProjects/projetopdv/src/br/com/projetopdv/DAO/PessoaDao.java</file>
-            <file>file:/C:/Users/roger/Documents/NetBeansProjects/projetopdv/src/br/com/projetopdv/DAO/CategoriaDao.java</file>
-            <file>file:/C:/Users/roger/Documents/NetBeansProjects/projetopdv/src/br/com/projetopdv/model/Fornecedor.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
