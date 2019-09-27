@@ -2,6 +2,11 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/roger/Documents/NetBeansProjects/projetopdv/src/br/com/projetopdv/view/FRMmenuPrincipal.java</file>
+            <file>file:/C:/Users/roger/Documents/NetBeansProjects/projetopdv/src/br/com/projetopdv/view/FRMcadastroFornecedor.java</file>
+            <file>file:/C:/Users/roger/Documents/NetBeansProjects/projetopdv/src/br/com/projetopdv/view/FRMcadastroUnidade.java</file>
+            <file>file:/C:/Users/roger/Documents/NetBeansProjects/projetopdv/src/br/com/projetopdv/DAO/UnidadeDao.java</file>
+        </group>
     </open-files>
 </project-private>
