@@ -4,6 +4,7 @@ import br.com.projetopdv.jdbc.ConnectionFactory;
 import java.sql.Connection;
 import br.com.projetopdv.model.UnidadeProduto;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
 /**
@@ -67,6 +68,37 @@ public class UnidadeDao {
         } catch (Exception e) {
             
             JOptionPane.showMessageDialog(null, "Erro em atualizar unidade: " + e);
+        }
+    }
+    
+    public UnidadeProduto searchUnidade(String search){
+        
+        try {
+            
+            String sql = "SELECT descricao FROM tbl_unidades_produtos WHERE descricao = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, search);
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            UnidadeProduto unidade = new UnidadeProduto();
+            
+            if (rs.next()){
+                
+                unidade.setId(rs.getInt("id"));
+                unidade.setUnidade(rs.getString("descricao"));
+                
+            }else{
+                
+                JOptionPane.showMessageDialog(null, "Nenhuma unidade cadastrada com essa descrição: \n" + search);
+            }
+            
+            return unidade;
+            
+        } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, "Não foi possível fazer a busca, erro: " + e.getMessage());
+            return null;
         }
     }
     
